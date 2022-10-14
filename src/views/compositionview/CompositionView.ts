@@ -1,7 +1,7 @@
 import { defineComponent, ref, type Ref } from 'vue';
 import type Job from '@/models/Job';
 import type OrderTerm from '@/models/OrderTerm'
-import JobList from '@/components/JobList.vue'
+import JobList from '@/components/JobListComposition.vue'
 
 export default defineComponent({
   name: 'CompositionView',
