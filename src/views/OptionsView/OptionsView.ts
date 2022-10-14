@@ -2,18 +2,9 @@ import { defineComponent } from 'vue';
 import OptionsComponent from '@/components/optionsComponent/optionscomponent.vue'
 
 export default defineComponent({
-    name: 'Options',
+    name: 'OptionsView',
     components: {
         OptionsComponent,
-    },
-    mixins: [],
-    props: {
-        isExample: {
-            type: Boolean,
-            default: false,
-        },
-    },
-    setup() {
     },
     data() {
         return {
