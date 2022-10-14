@@ -11,7 +11,8 @@
       </div>
     </header>
 
-    <JobList :jobs="jobs" :order="order" :showHeading="true" someNumber="200" @resetOrder="onResetOrder"/>
+    <!-- <JobList :jobs="jobs" :order="order" :showHeading="true" someNumber="200" @resetOrder="onResetOrder"/> -->
+    <JobListSetup :jobs="jobs" :order="order" :showHeading="true" someNumber="500" @resetOrder="onResetOrder"/>
   </div>
 </template>
   <script src="./CompositionView.ts" lang="ts"/>

@@ -1,8 +1,8 @@
 <template>
   <div class="job-list">
     <h3>
-      Compositino Job List
-      <span v-if="showHeading">with optional heading and number {{someNumber}}</span>
+      Composition Job List <span v-if="hasMounted">has mounted</span>
+      <span v-if="showHeading"> with optional heading and number {{someNumber}}</span>      
     </h3>
     <p>Ordered by {{ order }}</p>
     <p>Order has been changed {{orderChangedCount}} times</p>
@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, type PropType, computed, ref, type Ref, watch } from 'vue'
+import { defineComponent, type PropType, computed, ref, type Ref, watch, onMounted } from 'vue'
 import type Job from '@/models/Job'
 import type OrderTerm from '@/models/OrderTerm'
 
@@ -45,14 +45,19 @@ export default defineComponent({
   },
   emits: ['resetOrder'],
   setup(props, { emit, attrs, slots, expose }) {
+
+    // Note:  "this" will have a value of undefined inside setup() 
+  
     const salarySelectedCount = ref(0);
     const orderChangedCount: Ref<number> = ref(0);
+    const hasMounted = ref(false);
     const orderedJobs = computed(() => {
       return [...props.jobs].sort((a: Job, b: Job) => {
         return a[props.order] > b[props.order] ? 1 : -1
       })
     });
 
+    // Also can use watchEffect() which runs immediately and re-runs it whenever the dependencies are changed.
     watch(() => props.order,
       (newValue, oldValue) => {
         if (newValue == 'salary') {
@@ -61,13 +66,23 @@ export default defineComponent({
         orderChangedCount.value++;
       },
       { immediate: true });
+      
 
     function onResetOrderClick() {
       emit(`resetOrder`);
     }
+
+    onMounted(() => {
+        console.log(`JobListComposition mounted`);
+        hasMounted.value = true;
+    });
+
+    // There is not a created life cycle hook.  Code previously in created should be executed inside setup()
+
     return {
       salarySelectedCount,
       orderChangedCount,
+      hasMounted,
       orderedJobs,
       onResetOrderClick,
     }

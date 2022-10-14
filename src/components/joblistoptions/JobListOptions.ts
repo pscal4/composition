@@ -19,6 +19,7 @@ export default defineComponent({
         return {
             salarySelectedCount: 0,
             orderChangedCount: 0,
+            hasMounted : false,
         };
     },
     computed: {
@@ -40,6 +41,10 @@ export default defineComponent({
             immediate: true,
         },
 
+    },
+    mounted() : void {
+        console.log(`JobListOptions mounted`);
+        this.hasMounted = true;
     },
     methods: {
         onResetOrderClick() {
