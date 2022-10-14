@@ -77,9 +77,7 @@ onMounted(() => {
           <p>{{ job.salary }} rupees</p>
         </div>
         <div class="description">
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem omnis voluptatum eius doloremque optio iusto
-            sequi dignissimos. Pariatur earum assumenda dolores possimus quidem quam, reprehenderit aliquid consequuntur
-            amet non facere.</p>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
         </div>
       </li>
     </transition-group>
