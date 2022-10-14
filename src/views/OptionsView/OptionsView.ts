@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue';
-import OptionsComponent from '../../components/optionComponent/optioncomponent.vue'
+import OptionsComponent from '@/components/optionsComponent/optionscomponent.vue'
 
 export default defineComponent({
     name: 'Options',
