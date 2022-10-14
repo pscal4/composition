@@ -21,26 +21,12 @@ export default defineComponent({
 
         };
     },
-
-    computed: {
-    },
-
-    watch: {
-        someName: function (newValue: any, oldValue: any): void {
-        },
-        someObject: {
-            handler(newValue, oldValue) {
-                //do something
-            },
-            deep: true,
-            immediate: true,
-        },
-
-    },
-
     methods: {
         onHandleSortClick(term: OrderTerm) {
             this.order = term
+        },
+        onResetOrder() {
+            this.order = 'title';
         }
     },
 })
