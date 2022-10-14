@@ -1,9 +1,10 @@
 <template>
   <div class="job-list">
     <h3>
-      Composition Job List 
+      Options Job List 
       <span v-if="showHeading">with optional heading</span>      
-    </h3>    <p>Ordered by {{ order }}</p>
+    </h3>
+    <p>Ordered by {{ order }}</p>
     <transition-group name="list" tag="ul">
       <li v-for="job in orderedJobs" :key="job.id">
         <h2>{{ job.title }} in {{ job.location }}</h2>
@@ -17,35 +18,7 @@
     </transition-group>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent, type PropType, computed } from 'vue'
-import type Job from '@/models/Job'
-import type OrderTerm from '@/models/OrderTerm'
-
-export default defineComponent({
-  props: {
-    jobs: {
-      type: Array as PropType<Job[]>,
-      required: true
-    },
-    order: {
-      type: String as PropType<OrderTerm>,
-        required: true
-    },
-    showHeading : Boolean,
-  },
-  setup(props) {
-    const orderedJobs = computed(() => {
-      return [...props.jobs].sort((a: Job, b: Job) => {
-        return a[props.order] > b[props.order] ? 1 : -1
-      })
-    })
-
-    return { orderedJobs }
-  },
-})
-</script>
+<script src="./JobListOptions.ts" lang="ts"></script>
 
 <style scoped>
   .job-list {
