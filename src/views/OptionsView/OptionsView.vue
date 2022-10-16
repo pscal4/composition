@@ -10,7 +10,7 @@
           <button @click="onHandleSortClick('location')">Order by location</button>
         </div>
       </header>
-  
+      <hr>      
       <job-list-options :jobs="jobs" :order="order" :showHeading="true" someNumber="200" @resetOrder="onResetOrder"/>
     </div>
 </template>
