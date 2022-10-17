@@ -82,3 +82,8 @@ header h1 {
 .list-move {
   transition: all 1s;
 }
+
+.greenbold {
+  color: #17bf66;
+  font-weight: bold;
+}
