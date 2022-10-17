@@ -1,7 +1,7 @@
 <template>
   <div class="job-list">
     <h3>
-      Composition Job List <span v-if="hasMounted">has mounted</span>
+      Composition Job List
       <span v-if="showHeading"> with optional heading and number {{someNumber}}</span>      
     </h3>
     <p>Ordered by {{ order }}</p>
@@ -48,8 +48,8 @@ export default defineComponent({
   
     const salarySelectedCount = ref(0);
     const orderChangedCount: Ref<number> = ref(0);
-    const hasMounted = ref(false);
-    const orderedJobs = computed(() => {
+
+      const orderedJobs = computed(() => {
       return [...props.jobs].sort((a: Job, b: Job) => {
         return a[props.order] > b[props.order] ? 1 : -1
       })
@@ -69,13 +69,6 @@ export default defineComponent({
     function onResetOrderClick() {
       emit(`resetOrder`);
     }
-
-    onMounted(() => {
-        console.log(`JobListComposition mounted`);
-        hasMounted.value = true;
-    });
-
-    // There is not a created life cycle hook.  Code previously in created should be executed inside setup()
 
     return {
       salarySelectedCount,

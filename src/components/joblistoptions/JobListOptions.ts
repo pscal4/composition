@@ -42,10 +42,6 @@ export default defineComponent({
         },
 
     },
-    mounted() : void {
-        console.log(`JobListOptions mounted`);
-        this.hasMounted = true;
-    },
     methods: {
         onResetOrderClick() {
             this.$emit(`resetOrder`);

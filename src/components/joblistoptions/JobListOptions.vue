@@ -1,7 +1,7 @@
 <template>
   <div class="job-list">
     <h3>
-      Options Job List <span v-if="hasMounted">has mounted</span>
+      Options Job List
       <span v-if="showHeading"> with optional heading and number {{someNumber}}</span>      
     </h3>
     <p>Ordered by {{ order }}</p>

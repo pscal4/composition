@@ -5,21 +5,21 @@
 // Better runtime performance (the template is compiled into a render function in the same scope, without an intermediate proxy)
 // Better IDE type-inference performance (less work for the language server to extract types from code)
 
-import { type PropType, computed, ref, type Ref, watch, onMounted } from 'vue'
+import { type PropType, computed, ref, type Ref, watch } from 'vue'
 import type Job from '@/models/Job'
 import type OrderTerm from '@/models/OrderTerm'
 
 const props = defineProps({
   jobs: {
-      type: Array as PropType<Job[]>,
-      required: true
-    },
-    order: {
-      type: String as PropType<OrderTerm>,
-      required: true
-    },
-    showHeading: Boolean,
-    someNumber: [Number, String] as PropType<Number | String>
+    type: Array as PropType<Job[]>,
+    required: true
+  },
+  order: {
+    type: String as PropType<OrderTerm>,
+    required: true
+  },
+  showHeading: Boolean,
+  someNumber: [Number, String] as PropType<Number | String>
 });
 
 const emit = defineEmits(['resetOrder'])
@@ -29,7 +29,6 @@ const emit = defineEmits(['resetOrder'])
 
 const salarySelectedCount = ref(0);
 const orderChangedCount: Ref<number> = ref(0);
-const hasMounted = ref(false);
 
 const orderedJobs = computed(() => {
   return [...props.jobs].sort((a: Job, b: Job) => {
@@ -50,20 +49,13 @@ function onResetOrderClick() {
   emit(`resetOrder`);
 }
 
-onMounted(() => {
-        console.log(`JobListComposition mounted`);
-        hasMounted.value = true;
-    });
-
-    // There is not a created life cycle hook.  Code previously in created should be executed inside setup()
-
 </script>
 
 <template>
   <div class="job-list">
     <h3>
       Setup Job List <span v-if="hasMounted">has mounted</span>
-      <span v-if="showHeading"> with optional heading and number {{someNumber}}</span>      
+      <span v-if="showHeading"> with optional heading and number {{someNumber}}</span>
     </h3>
     <p>Ordered by {{ order }}</p>
     <p>Order has been changed {{orderChangedCount}} times</p>

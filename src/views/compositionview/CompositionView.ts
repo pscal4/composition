@@ -7,9 +7,10 @@ import JobListSetup from '@/components/JobListSetup.vue'
 export default defineComponent({
   name: 'CompositionView',
   components: { JobList, JobListSetup },
+
   setup() {
     const jobs = ref<Job[]>([]);
-    const order = ref<OrderTerm>('title')
+    const order = ref<OrderTerm>('title');
 
     function getJobs(): void {
       jobs.value = [
@@ -29,6 +30,8 @@ export default defineComponent({
       order.value = 'title';
     }
 
+    // There is not a created life cycle hook.  If we wanted to call getJobs in created, it would just
+    // be executed inside setup.
     onMounted(() => {
       getJobs();
     });
