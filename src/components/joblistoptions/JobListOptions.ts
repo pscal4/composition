@@ -10,18 +10,29 @@ export default defineComponent({
         },
         order: {
             type: String as PropType<OrderTerm>,
-            required: true
+            default: 'title'
         },
         showHeading: Boolean,
         someNumber: [Number, String] as PropType<Number | String>
     },
     
+    // Class Decorator syntax for props
+    // @Prop({ required: true })
+    // private jobs : Job[];
+    // @Prop({ default: 'title' })
+    // private order : OrderTerm;
+    // @Prop({ default: false })
+    // private showHeading: boolean;
+    // @Prop()
+    // private someNumber: number | string;
+
     data() {
         return {
             salarySelectedCount: 0,
             orderChangedCount: 0,
         };
     },
+
     computed: {
         orderedJobs(): Job[] {
             return [...this.jobs].sort((a: Job, b: Job) => {
@@ -29,6 +40,8 @@ export default defineComponent({
             })
 
         }
+        // Class syntax
+        // private get orderedJobs(): Job[] { ... }
     },
     watch: {
         order: {
@@ -39,6 +52,9 @@ export default defineComponent({
                 this.orderChangedCount++;
             },
             immediate: true,
+        },
+        showHeading: function (newValue: boolean, oldValue: boolean) {
+            //        ^ Simple syntax 
         },
 
     },
