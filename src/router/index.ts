@@ -33,7 +33,7 @@ const router = createRouter({
     {
       path: '/mixin',
       name: 'mixin',
-      component: () => import('../views/MixinView.vue')
+      component: () => import('../views/mixinview/MixinView.vue')
     }
   ]
 })
