@@ -11,13 +11,11 @@
       </div>
     </header>
     <hr>
-
-    <!-- <JobList :jobs="jobs" :order="order" :showHeading="true" someNumber="200" @resetOrder="onResetOrder"/> -->
-    <JobListSetup :jobs="jobs" :order="order" :showHeading="true" someNumber="500" @resetOrder="onResetOrder"/>
+    <JobListSetup :jobs="jobs" :order="order" :showHeading="true" someNumber="200" @resetOrder="onResetOrder"/>
   </div>
 </template>
   <script src="./CompositionView.ts" lang="ts"/>
-  <style>
+ <style>
   header {
     text-align: center;
   }

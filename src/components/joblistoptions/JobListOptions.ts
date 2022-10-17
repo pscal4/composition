@@ -15,11 +15,11 @@ export default defineComponent({
         showHeading: Boolean,
         someNumber: [Number, String] as PropType<Number | String>
     },
+    
     data() {
         return {
             salarySelectedCount: 0,
             orderChangedCount: 0,
-            hasMounted : false,
         };
     },
     computed: {

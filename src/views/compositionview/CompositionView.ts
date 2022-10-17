@@ -1,7 +1,6 @@
-import { defineComponent, onMounted, ref, type Ref } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import type Job from '@/models/Job';
 import type OrderTerm from '@/models/OrderTerm'
-import JobList from '@/components/JobListComposition.vue'
 import JobListSetup from '@/components/JobListSetup.vue'
 
 export default defineComponent({

@@ -1,6 +1,5 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref, type Ref } from 'vue';
-import type Job from '@/models/Job';
 import type OrderTerm from '@/models/OrderTerm'
 import JobList from '@/components/JobListComposition.vue'
 import JobListSetup from '@/components/JobListSetup.vue'
@@ -41,8 +40,8 @@ export default defineComponent({
         </header>
         <hr>
 
-        <!-- <JobList :jobs="jobs" :order="order" :showHeading="true" someNumber="200" @resetOrder="onResetOrder"/> -->
-        <JobListSetup :jobs="jobs" :order="order" :showHeading="true" someNumber="500" @resetOrder="onResetOrder" />
+        <JobList :jobs="jobs" :order="order" :showHeading="true" someNumber="200" @resetOrder="onResetOrder"/>
+        <!-- <JobListSetup :jobs="jobs" :order="order" :showHeading="true" someNumber="500" @resetOrder="onResetOrder" /> -->
     </div>
 </template>
 <style>

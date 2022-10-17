@@ -73,7 +73,6 @@ export default defineComponent({
     return {
       salarySelectedCount,
       orderChangedCount,
-      hasMounted,
       orderedJobs,
       onResetOrderClick,
     }
