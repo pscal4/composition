@@ -1,4 +1,4 @@
-import { defineComponent, onMounted, ref } from 'vue';
+import { defineComponent, onMounted, ref, type Ref } from 'vue';
 import type Job from '@/models/Job';
 import type OrderTerm from '@/models/OrderTerm'
 import JobList from '@/components/JobListComposition.vue'
@@ -8,8 +8,14 @@ export default defineComponent({
   components: { JobList },
 
   setup() {
-    const jobs = ref<Job[]>([]);
+    const jobs : Ref<Array<Job>> = ref([]);
     const order = ref<OrderTerm>('title');
+    
+    // There is not a created life cycle hook.  If we wanted to call getJobs in created, it would just
+    // be executed inside setup.
+    onMounted(() => {
+      getJobs();
+    });
 
     function getJobs(): void {
       jobs.value = [
@@ -29,11 +35,6 @@ export default defineComponent({
       order.value = 'title';
     }
 
-    // There is not a created life cycle hook.  If we wanted to call getJobs in created, it would just
-    // be executed inside setup.
-    onMounted(() => {
-      getJobs();
-    });
 
     return {
       jobs,

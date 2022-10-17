@@ -15,7 +15,6 @@ export default defineComponent({
         showHeading: Boolean,
         someNumber: [Number, String] as PropType<Number | String>
     },
-    
     // Class Decorator syntax for props
     // @Prop({ required: true })
     // private jobs : Job[];
@@ -32,6 +31,10 @@ export default defineComponent({
             orderChangedCount: 0,
         };
     },
+    // Class syntax
+    // private salarySelectedCount: number = 0;
+    // private orderChangedCount: number = 0;
+
 
     computed: {
         orderedJobs(): Job[] {
@@ -40,9 +43,10 @@ export default defineComponent({
             })
 
         }
-        // Class syntax
-        // private get orderedJobs(): Job[] { ... }
     },
+    // Class syntax
+    // private get orderedJobs(): Job[] { ... }
+
     watch: {
         order: {
             handler(newValue: OrderTerm, oldValue: OrderTerm) {
@@ -53,13 +57,14 @@ export default defineComponent({
             },
             immediate: true,
         },
-        showHeading: function (newValue: boolean, oldValue: boolean) {
+        showHeading: function (newValue: boolean, oldValue: boolean): void {
             //        ^ Simple syntax 
+            // Do something
         },
 
     },
     methods: {
-        onResetOrderClick() {
+        onResetOrderClick(): void {
             this.$emit(`resetOrder`);
         }
     }

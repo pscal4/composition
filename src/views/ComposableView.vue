@@ -10,7 +10,7 @@ export default defineComponent({
     components: { JobList, JobListSetup },
 
     setup() {
-        const { jobs, order, onResetOrder } = useJobList('title');
+        const { jobs, order, onResetOrder } = useJobList('location');
 
         const onHandleSortClick = (term: OrderTerm) => {
             order.value = term

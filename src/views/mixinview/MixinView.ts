@@ -10,9 +10,17 @@ export default defineComponent({
         JobListOptions,
     },
 
+    created() {
+        this.order = 'location';
+    },
+
     methods: {
         onHandleSortClick(term: OrderTerm) {
             this.order = term
         },        
+
+        onResetOrder() {
+            this.order = 'location';
+        }
     },
 })

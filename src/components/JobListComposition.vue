@@ -2,7 +2,7 @@
   <div class="job-list">
     <h3>
       Composition Job List
-      <span v-if="showHeading"> with optional heading and number {{someNumber}}</span>      
+      <span v-if="showHeading"> with optional heading and number {{someNumber}}</span>
     </h3>
     <p>Ordered by: <span class="greenbold">{{order}}</span></p>
     <p>Order has been changed: <span class="greenbold">{{orderChangedCount}} times</span></p>
@@ -36,20 +36,21 @@ export default defineComponent({
     },
     order: {
       type: String as PropType<OrderTerm>,
-      required: true
+      default: 'title'
     },
     showHeading: Boolean,
     someNumber: [Number, String] as PropType<Number | String>
   },
-  emits: ['resetOrder'],
-  setup(props, { emit, attrs, slots, expose }) {
 
-    // Note:  "this" will have a value of undefined inside setup() 
+  emits: ['resetOrder'],
   
+  setup(props, { emit, attrs, slots, expose }) {
+    // equivalent to this.$emit, this.$attrs, this.$slots
+
     const salarySelectedCount = ref(0);
     const orderChangedCount: Ref<number> = ref(0);
 
-      const orderedJobs = computed(() => {
+    const orderedJobs = computed(() => {
       return [...props.jobs].sort((a: Job, b: Job) => {
         return a[props.order] > b[props.order] ? 1 : -1
       })
@@ -64,11 +65,12 @@ export default defineComponent({
         orderChangedCount.value++;
       },
       { immediate: true });
-      
 
-    function onResetOrderClick() {
+    function onResetOrderClick(): void {
       emit(`resetOrder`);
     }
+
+    // Note:  "this" will have a value of undefined inside setup()
 
     return {
       salarySelectedCount,
