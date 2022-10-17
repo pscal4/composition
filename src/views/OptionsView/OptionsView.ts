@@ -35,6 +35,7 @@ export default defineComponent({
         onHandleSortClick(term: OrderTerm) {
             this.order = term
         },
+        
         onResetOrder() {
             this.order = 'title';
         }
