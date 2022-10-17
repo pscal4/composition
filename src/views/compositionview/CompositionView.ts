@@ -1,11 +1,11 @@
 import { defineComponent, onMounted, ref } from 'vue';
 import type Job from '@/models/Job';
 import type OrderTerm from '@/models/OrderTerm'
-import JobListSetup from '@/components/JobListSetup.vue'
+import JobList from '@/components/JobListComposition.vue'
 
 export default defineComponent({
   name: 'CompositionView',
-  components: { JobList, JobListSetup },
+  components: { JobList },
 
   setup() {
     const jobs = ref<Job[]>([]);
