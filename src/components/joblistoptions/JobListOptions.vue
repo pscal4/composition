@@ -4,7 +4,7 @@
       Options Job List
       <span v-if="showHeading"> with optional heading and number {{someNumber}}</span>      
     </h3>
-    <p>Ordered by: <span class="greenbold">{{order}}</span></p>
+    <p>Ordered by: <span class="greenbold">{{jobSortOrder}}</span></p>
     <p>Order has been changed: <span class="greenbold">{{orderChangedCount}} times</span></p>
     <p>Salary order has been selected: <span class="greenbold">{{salarySelectedCount}} times</span></p>
     <button @click="onResetOrderClick">Reset Order</button>

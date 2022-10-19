@@ -4,7 +4,7 @@
       Composition Job List
       <span v-if="showHeading"> with optional heading and number {{someNumber}}</span>
     </h3>
-    <p>Ordered by: <span class="greenbold">{{order}}</span></p>
+    <p>Ordered by: <span class="greenbold">{{jobSortOrder}}</span></p>
     <p>Order has been changed: <span class="greenbold">{{orderChangedCount}} times</span></p>
     <p>Salary order has been selected: <span class="greenbold">{{salarySelectedCount}} times</span></p>
     <button @click="onResetOrderClick">Reset Order</button>
@@ -26,7 +26,7 @@
 <script lang="ts">
 import { defineComponent, type PropType, computed, ref, type Ref, watch, onMounted } from 'vue'
 import type Job from '@/models/Job'
-import type OrderTerm from '@/models/OrderTerm'
+import { JobSortOrder } from '@/models/JobSortOrder';
 
 export default defineComponent({
   props: {
@@ -34,30 +34,30 @@ export default defineComponent({
       type: Array as PropType<Job[]>,
       required: true
     },
-    order: {
-      type: String as PropType<OrderTerm>,
-      default: 'title'
+    jobSortOrder: {
+      type: String as PropType<JobSortOrder>,
+      default: JobSortOrder.Title,
     },
     showHeading: Boolean,
     someNumber: [Number, String] as PropType<Number | String>
   },
 
   emits: ['resetOrder'],
-  
+
   setup(props, { emit, attrs, slots, expose }) {
     // equivalent to this.$emit, this.$attrs, this.$slots
 
     const salarySelectedCount = ref(0);
-    const orderChangedCount: Ref<number> = ref(0);
+    const orderChangedCount = ref(0);
 
     const orderedJobs = computed(() => {
       return [...props.jobs].sort((a: Job, b: Job) => {
-        return a[props.order] > b[props.order] ? 1 : -1
+        return a[props.jobSortOrder] > b[props.jobSortOrder] ? 1 : -1
       })
     });
 
     // Also can use watchEffect() which runs immediately and re-runs it whenever the dependencies are changed.
-    watch(() => props.order,
+    watch(() => props.jobSortOrder,
       (newValue, oldValue) => {
         if (newValue == 'salary') {
           salarySelectedCount.value++;

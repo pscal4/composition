@@ -1,10 +1,10 @@
 import { onMounted, ref } from "vue"
 import type Job from '@/models/Job';
-import type OrderTerm from '@/models/OrderTerm'
+import type { JobSortOrder } from "@/models/JobSortOrder";
 
-export function useJobList(initialOrder : OrderTerm) {
+export function useJobList(initialOrder : JobSortOrder) {
     const jobs = ref<Job[]>([]);
-    const order = ref<OrderTerm>(initialOrder);
+    const jobSortOrder = ref<JobSortOrder>(initialOrder);
 
     function getJobs(): void {
       jobs.value = [
@@ -17,7 +17,7 @@ export function useJobList(initialOrder : OrderTerm) {
     }
 
     function onResetOrder() {
-      order.value = initialOrder;
+      jobSortOrder.value = initialOrder;
     }
 
     // Composables can use life cycle hooks.
@@ -27,7 +27,7 @@ export function useJobList(initialOrder : OrderTerm) {
 
     return {
       jobs,
-      order,
+      jobSortOrder,
       onResetOrder,
     }
   }

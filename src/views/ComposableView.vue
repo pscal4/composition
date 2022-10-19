@@ -1,24 +1,23 @@
 <script lang="ts">
-import { defineComponent, onMounted, ref, type Ref } from 'vue';
-import type OrderTerm from '@/models/OrderTerm'
-import JobList from '@/components/JobListComposition.vue'
+import { defineComponent } from 'vue';
 import JobListSetup from '@/components/JobListSetup.vue'
 import { useJobList } from '@/composables/useJobList';
+import { JobSortOrder } from '@/models/JobSortOrder';
 
 export default defineComponent({
     name: 'CompositionView',
-    components: { JobList, JobListSetup },
+    components: { JobListSetup },
 
     setup() {
-        const { jobs, order, onResetOrder } = useJobList('location');
+        const { jobs, jobSortOrder, onResetOrder } = useJobList(JobSortOrder.Location);
 
-        const onHandleSortClick = (term: OrderTerm) => {
-            order.value = term
+        const onHandleSortClick = (sortOrder: JobSortOrder) => {
+            jobSortOrder.value = sortOrder
         }
 
         return {
             jobs,
-            order,
+            jobSortOrder,
             onHandleSortClick,
             onResetOrder,
         }
@@ -40,7 +39,7 @@ export default defineComponent({
         </header>
         <hr>
 
-        <JobListSetup :jobs="jobs" :order="order" :showHeading="true" someNumber="500" @resetOrder="onResetOrder" />
+        <JobListSetup :jobs="jobs" :jobSortOrder="jobSortOrder" :showHeading="true" someNumber="500" @resetOrder="onResetOrder" />
     </div>
 </template>
   

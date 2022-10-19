@@ -1,6 +1,6 @@
 import { defineComponent, type PropType } from 'vue'
 import type Job from '@/models/Job'
-import type OrderTerm from '@/models/OrderTerm'
+import { JobSortOrder } from '@/models/JobSortOrder';
 
 export default defineComponent({
     props: {
@@ -8,22 +8,23 @@ export default defineComponent({
             type: Array as PropType<Job[]>,
             required: true
         },
-        order: {
-            type: String as PropType<OrderTerm>,
-            default: 'title'
+        jobSortOrder: {
+            type: String as PropType<JobSortOrder>,
+            default: JobSortOrder.Title,
         },
         showHeading: Boolean,
         someNumber: [Number, String] as PropType<Number | String>
     },
     // Class Decorator syntax for props
     // @Prop({ required: true })
-    // private jobs : Job[];
+    // private jobs: Job[];
     // @Prop({ default: 'title' })
-    // private order : OrderTerm;
+    // private jobSortOrder: JobSortOrder;
     // @Prop({ default: false })
     // private showHeading: boolean;
     // @Prop()
     // private someNumber: number | string;
+
 
     data() {
         return {
@@ -39,7 +40,7 @@ export default defineComponent({
     computed: {
         orderedJobs(): Job[] {
             return [...this.jobs].sort((a: Job, b: Job) => {
-                return a[this.order] > b[this.order] ? 1 : -1
+                return a[this.jobSortOrder] > b[this.jobSortOrder] ? 1 : -1
             })
 
         }
@@ -48,8 +49,8 @@ export default defineComponent({
     // private get orderedJobs(): Job[] { ... }
 
     watch: {
-        order: {
-            handler(newValue: OrderTerm, oldValue: OrderTerm) {
+        jobSortOrder: {
+            handler(newValue: JobSortOrder, oldValue: JobSortOrder) {
                 if (newValue == 'salary') {
                     this.salarySelectedCount++;
                 }

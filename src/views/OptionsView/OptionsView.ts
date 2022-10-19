@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue';
 import JobListOptions from '@/components/joblistoptions/JobListOptions.vue'
 import type Job from '@/models/Job';
-import type OrderTerm from '@/models/OrderTerm';
+import { JobSortOrder } from '@/models/JobSortOrder';
 
 export default defineComponent({
     name: 'OptionsView',
@@ -12,7 +12,7 @@ export default defineComponent({
     data() {
         return {
             jobs: [] as Job[],
-            order: 'title' as OrderTerm,
+            jobSortOrder: JobSortOrder.Title as JobSortOrder,
         };
     },
 
@@ -32,12 +32,12 @@ export default defineComponent({
             ];
         },
 
-        onHandleSortClick(term: OrderTerm) {
-            this.order = term
+        onHandleSortClick(sortOrder: JobSortOrder) {
+            this.jobSortOrder = sortOrder
         },
         
         onResetOrder() {
-            this.order = 'title';
+            this.jobSortOrder = JobSortOrder.Title;
         }
     },
 })

@@ -1,7 +1,7 @@
 import { defineComponent, onMounted, ref, type Ref } from 'vue';
 import type Job from '@/models/Job';
-import type OrderTerm from '@/models/OrderTerm'
 import JobList from '@/components/JobListComposition.vue'
+import { JobSortOrder } from '@/models/JobSortOrder';
 
 export default defineComponent({
   name: 'CompositionView',
@@ -9,7 +9,8 @@ export default defineComponent({
 
   setup() {
     const jobs : Ref<Array<Job>> = ref([]);
-    const order = ref<OrderTerm>('title');
+    // Another way: const jobs = ref<Array<Job>>([]);
+    const jobSortOrder = ref(JobSortOrder.Title);
     
     // There is not a created life cycle hook.  If we wanted to call getJobs in created, it would just
     // be executed inside setup.
@@ -27,18 +28,17 @@ export default defineComponent({
       ];
     }
 
-    const onHandleSortClick = (term: OrderTerm) => {
-      order.value = term
+    const onHandleSortClick = (sortOrder: JobSortOrder) => {
+      jobSortOrder.value = sortOrder;
     }
 
     function onResetOrder() {
-      order.value = 'title';
+      jobSortOrder.value = JobSortOrder.Title;
     }
-
 
     return {
       jobs,
-      order,
+      jobSortOrder,
       onHandleSortClick,
       onResetOrder,
     }

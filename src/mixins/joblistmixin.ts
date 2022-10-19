@@ -1,13 +1,13 @@
 import { defineComponent } from 'vue';
 import type Job from '@/models/Job';
-import type OrderTerm from '@/models/OrderTerm';
+import { JobSortOrder } from '@/models/JobSortOrder';
 
 export default defineComponent({
     name: 'JobListMixin',
     data() {
         return {
             jobs: [] as Job[],
-            order: 'title' as OrderTerm,
+            jobSortOrder: JobSortOrder.Title,
         };
     },
 
@@ -28,7 +28,7 @@ export default defineComponent({
         },
       
         onResetOrder() {
-            this.order = 'title';
+            this.jobSortOrder = JobSortOrder.Title;
         }
     },
 })

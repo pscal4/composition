@@ -11,7 +11,7 @@
         </div>
       </header>
       <hr>      
-      <job-list-options :jobs="jobs" :order="order" :showHeading="true" someNumber="200" @resetOrder="onResetOrder"/>
+      <job-list-options :jobs="jobs" :jobSortOrder="jobSortOrder" :showHeading="true" someNumber="200" @resetOrder="onResetOrder"/>
     </div>
 </template>
 <script src="./OptionsView.ts" lang="ts"/>

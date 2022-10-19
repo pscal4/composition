@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue';
 import JobListOptions from '@/components/joblistoptions/JobListOptions.vue'
-import type OrderTerm from '@/models/OrderTerm';
 import JobListMixin from '@/mixins/joblistmixin';
+import { JobSortOrder } from '@/models/JobSortOrder';
 
 export default defineComponent({
     name: 'MixinView',
@@ -11,16 +11,16 @@ export default defineComponent({
     },
 
     created() {
-        this.order = 'location';
+        this.jobSortOrder = JobSortOrder.Location;
     },
 
     methods: {
-        onHandleSortClick(term: OrderTerm) {
-            this.order = term
+        onHandleSortClick(sortOrder: JobSortOrder) {
+            this.jobSortOrder = sortOrder;
         },        
 
         onResetOrder() {
-            this.order = 'location';
+            this.jobSortOrder = JobSortOrder.Location;
         }
     },
 })

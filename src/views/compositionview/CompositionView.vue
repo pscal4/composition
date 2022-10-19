@@ -10,8 +10,8 @@
         <button @click="onHandleSortClick('location')">Order by location</button>
       </div>
     </header>
-    <hr>
-    <JobList :jobs="jobs" :order="order" :showHeading="true" someNumber="200" @resetOrder="onResetOrder"/>
+    <hr>      
+    <job-list :jobs="jobs" :jobSortOrder="jobSortOrder" :showHeading="true" someNumber="200" @resetOrder="onResetOrder"/>
   </div>
 </template>
 <script src="./CompositionView.ts" lang="ts"/>
