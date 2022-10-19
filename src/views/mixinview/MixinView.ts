@@ -15,8 +15,8 @@ export default defineComponent({
     },
 
     methods: {
-        onHandleSortClick(sortOrder: JobSortOrder) {
-            this.jobSortOrder = sortOrder;
+        onHandleSortClick(sortOrder: string) {
+            this.jobSortOrder = sortOrder as JobSortOrder;
         },        
 
         onResetOrder() {

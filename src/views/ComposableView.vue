@@ -11,8 +11,8 @@ export default defineComponent({
     setup() {
         const { jobs, jobSortOrder, onResetOrder } = useJobList(JobSortOrder.Location);
 
-        const onHandleSortClick = (sortOrder: JobSortOrder) => {
-            jobSortOrder.value = sortOrder
+        const onHandleSortClick = (sortOrder: string) => {
+            jobSortOrder.value = sortOrder as JobSortOrder;
         }
 
         return {

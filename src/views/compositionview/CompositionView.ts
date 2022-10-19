@@ -28,8 +28,8 @@ export default defineComponent({
       ];
     }
 
-    const onHandleSortClick = (sortOrder: JobSortOrder) => {
-      jobSortOrder.value = sortOrder;
+    const onHandleSortClick = (sortOrder: string) => {
+      jobSortOrder.value = sortOrder as JobSortOrder;
     }
 
     function onResetOrder() {
