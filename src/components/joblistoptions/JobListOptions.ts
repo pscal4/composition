@@ -56,6 +56,7 @@ export default defineComponent({
                 this.orderChangedCount++;
             },
             immediate: true,
+            // deep: true, 
         },
         showHeading: function (newValue: boolean, oldValue: boolean): void {
             //        ^ Simple syntax 

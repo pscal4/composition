@@ -51,6 +51,15 @@ function onResetOrderClick() {
 
 </script>
 
+<script lang="ts">
+// Can have both script and script setup.
+export default {
+    name: 'JobListSetup',
+    //inheritAttrs: false,
+}
+</script>
+
+
 <template>
   <div class="job-list">
     <h3>
