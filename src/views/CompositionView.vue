@@ -1,3 +1,21 @@
+<template>
+  <div>
+    <header>
+      <div class="title">
+        <h1>Composition</h1>
+      </div>
+      <div class="order">
+        <button @click="onHandleSortClick('title')">Order by title</button>
+        <button @click="onHandleSortClick('salary')">Order by salary</button>
+        <button @click="onHandleSortClick('location')">Order by location</button>
+      </div>
+    </header>
+    <hr>
+    <job-list :jobs="jobs" :jobSortOrder="jobSortOrder" :showHeading="true" someNumber="200" @resetOrder="onResetOrder" />
+  </div>
+</template>
+
+<script lang="ts">
 import { defineComponent, onMounted, ref, type Ref } from 'vue';
 import type Job from '@/models/Job';
 import JobList from '@/components/JobListComposition.vue'
@@ -8,10 +26,10 @@ export default defineComponent({
   components: { JobList },
 
   setup() {
-    const jobs : Ref<Array<Job>> = ref([]);
+    const jobs: Ref<Array<Job>> = ref([]);
     // Another way: const jobs = ref<Array<Job>>([]);
     const jobSortOrder = ref(JobSortOrder.Title);
-    
+
     // There is not a created life cycle hook.  If we wanted to call getJobs in created, it would just
     // be executed inside setup.
     onMounted(() => {
@@ -45,3 +63,4 @@ export default defineComponent({
   }
 });
 
+</script>
