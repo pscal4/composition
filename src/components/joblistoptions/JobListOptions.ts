@@ -5,7 +5,7 @@ import { JobSortOrder } from '@/models/JobSortOrder';
 export default defineComponent({
     props: {
         jobs: {
-            type: Array as PropType<Job[]>,
+            type: Array<Job>,
             required: true
         },
         jobSortOrder: {
@@ -15,6 +15,9 @@ export default defineComponent({
         showHeading: Boolean,
         someNumber: [Number, String] as PropType<Number | String>
     },
+    // Notice type is a constructor so Boolean (with upper case) versus boolean
+    // Need PropType when property can be multiple types
+
     // Class Decorator syntax for props
     // @Prop({ required: true })
     // private jobs: Job[];
@@ -61,7 +64,7 @@ export default defineComponent({
         },
         showHeading: function (newValue: boolean, oldValue: boolean): void {
             //        ^ Simple syntax 
-            // Do something
+            console.log(`showHeading changed from ${oldValue} to ${newValue}`);
         },
 
     },

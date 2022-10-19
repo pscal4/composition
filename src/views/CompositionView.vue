@@ -27,7 +27,7 @@ export default defineComponent({
 
   setup() {
     const jobs: Ref<Array<Job>> = ref([]);
-    // Another way: const jobs = ref<Array<Job>>([]);
+    // Another way: const jobs2 = ref<Array<Job>>([]);
     const jobSortOrder = ref(JobSortOrder.Title);
 
     // There is not a created life cycle hook.  If we wanted to call getJobs in created, it would just

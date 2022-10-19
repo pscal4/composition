@@ -4,7 +4,7 @@ import type { JobSortOrder } from "@/models/JobSortOrder";
 
 export function useJobList(initialOrder : JobSortOrder) {
     const jobs = ref<Job[]>([]);
-    const jobSortOrder = ref<JobSortOrder>(initialOrder);
+    const jobSortOrder = ref(initialOrder);
 
     function getJobs(): void {
       jobs.value = [
