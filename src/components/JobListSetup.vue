@@ -70,7 +70,7 @@ export default {
     <p>Ordered by: <span class="greenbold">{{jobSortOrder}}</span></p>
     <p>Order has been changed: <span class="greenbold">{{orderChangedCount}} times</span></p>
     <p>Salary order has been selected: <span class="greenbold">{{salarySelectedCount}} times</span></p>
-    <button v-if="allowReset">@click="onResetOrderClick">Reset Order</button>
+    <button v-if="allowReset" @click="onResetOrderClick">Reset Order</button>
 
     <transition-group name="list" tag="ul">
       <li v-for="job in orderedJobs" :key="job.id">
