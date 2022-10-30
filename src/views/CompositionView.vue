@@ -11,7 +11,7 @@
       </div>
     </header>
     <hr>
-    <job-list :jobs="jobs" :jobSortOrder="jobSortOrder" :showHeading="true" someNumber="200" @resetOrder="onResetOrder" />
+    <job-list :jobs="jobs" :jobSortOrder="jobSortOrder" :allowReset="true" someNumber="200" @resetOrder="onResetOrder" />
   </div>
 </template>
 

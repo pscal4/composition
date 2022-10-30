@@ -8,6 +8,7 @@ export default defineComponent({
         return {
             jobs: [] as Job[],
             jobSortOrder: JobSortOrder.Title,
+            allowReset: true,
         };
     },
 

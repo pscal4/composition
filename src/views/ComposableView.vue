@@ -39,7 +39,7 @@ export default defineComponent({
         </header>
         <hr>
 
-        <JobListSetup :jobs="jobs" :jobSortOrder="jobSortOrder" :showHeading="true" someNumber="500" @resetOrder="onResetOrder" />
+        <JobListSetup :jobs="jobs" :jobSortOrder="jobSortOrder" :allowReset="true" someNumber="500" @resetOrder="onResetOrder" />
     </div>
 </template>
   

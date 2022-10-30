@@ -18,7 +18,7 @@ const props = defineProps({
     type: String as PropType<JobSortOrder>,
     default: 'title',
   },
-  showHeading: Boolean,
+  allowReset: Boolean,
   someNumber: [Number, String] as PropType<Number | String>
 });
 
@@ -62,17 +62,15 @@ export default {
 }
 </script>
 
-
 <template>
   <div class="job-list">
     <h3>
-      Setup Job List
-      <span v-if="showHeading"> with optional heading and number {{someNumber}}</span>
+      Setup Job List {{someNumber}}
     </h3>
     <p>Ordered by: <span class="greenbold">{{jobSortOrder}}</span></p>
     <p>Order has been changed: <span class="greenbold">{{orderChangedCount}} times</span></p>
     <p>Salary order has been selected: <span class="greenbold">{{salarySelectedCount}} times</span></p>
-    <button @click="onResetOrderClick">Reset Order</button>
+    <button v-if="allowReset">@click="onResetOrderClick">Reset Order</button>
 
     <transition-group name="list" tag="ul">
       <li v-for="job in orderedJobs" :key="job.id">

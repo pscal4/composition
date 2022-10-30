@@ -12,7 +12,7 @@ export default defineComponent({
             type: String as PropType<JobSortOrder>,
             default: JobSortOrder.Title,
         },
-        showHeading: Boolean,
+        allowReset: Boolean,
         someNumber: [Number, String] as PropType<Number | String>
     },
     // Notice type is a constructor so Boolean (with upper case) versus boolean
@@ -24,7 +24,7 @@ export default defineComponent({
     // @Prop({ default: 'title' })
     // private jobSortOrder: JobSortOrder;
     // @Prop({ default: false })
-    // private showHeading: boolean;
+    // private allowReset: boolean;
     // @Prop()
     // private someNumber: number | string;
 
@@ -62,9 +62,9 @@ export default defineComponent({
             immediate: true,
             // deep: true, 
         },
-        showHeading: function (newValue: boolean, oldValue: boolean): void {
+        allowReset: function (newValue: boolean, oldValue: boolean): void {
             //        ^ Simple syntax 
-            console.log(`showHeading changed from ${oldValue} to ${newValue}`);
+            console.log(`allowReset changed from ${oldValue} to ${newValue}`);
         },
 
     },
