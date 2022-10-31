@@ -19,12 +19,13 @@ const props = defineProps({
     default: 'title',
   },
   allowReset: Boolean,
-  someNumber: [Number, String] as PropType<Number | String>
+  someNumber: [Number, String] as PropType<number | string>,
 });
 
 const emit = defineEmits(['resetOrder'])
 // const emitsObjectSyntax = defineEmits<{
-//   (e: 'resetOrder'): void
+//   (e: 'resetOrder'): void,
+//   (e: 'doSomething', payload: string) : void,
 //   }>();
 
 const salarySelectedCount = ref(0);

@@ -1,8 +1,17 @@
 import { onMounted, ref } from "vue"
 import type Job from '@/models/Job';
-import type { JobSortOrder } from "@/models/JobSortOrder";
+import { JobSortOrder } from "@/models/JobSortOrder";
 
-export function useJobList(initialOrder : JobSortOrder) {
+export interface useJobListOptions {
+  initialOrder? : JobSortOrder,
+  allowReset?: boolean,
+}
+
+export function useJobList(options : useJobListOptions = {}) {
+  const { initialOrder = JobSortOrder.Location,
+    allowReset = true,    
+  } = options;
+
     const jobs = ref<Job[]>([]);
     const jobSortOrder = ref(initialOrder);
 
@@ -26,8 +35,9 @@ export function useJobList(initialOrder : JobSortOrder) {
     });
 
     return {
-      jobs,
       jobSortOrder,
-      onResetOrder,
+      allowReset : ref(allowReset),
+      jobs,
+      onResetOrder,      
     }
   }

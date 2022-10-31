@@ -1,11 +1,11 @@
 <template>
   <div class="job-list">
     <h3>
-      Composition Job List {{someNumber}}
+      Composition Job List {{ someNumber }}
     </h3>
-    <p>Ordered by: <span class="greenbold">{{jobSortOrder}}</span></p>
-    <p>Order has been changed: <span class="greenbold">{{orderChangedCount}} times</span></p>
-    <p>Salary order has been selected: <span class="greenbold">{{salarySelectedCount}} times</span></p>
+    <p>Ordered by: <span class="greenbold">{{ jobSortOrder }}</span></p>
+    <p>Order has been changed: <span class="greenbold">{{ orderChangedCount }} times</span></p>
+    <p>Salary order has been selected: <span class="greenbold">{{ salarySelectedCount }} times</span></p>
     <button v-if="allowReset" @click="onResetOrderClick">Reset Order</button>
 
     <transition-group name="list" tag="ul">
@@ -27,6 +27,11 @@ import { defineComponent, type PropType, computed, ref, type Ref, watch, onMount
 import type Job from '@/models/Job'
 import { JobSortOrder } from '@/models/JobSortOrder';
 
+export interface JobListOptions {
+  allowReset: boolean,
+  someNumber: number,
+}
+
 export default defineComponent({
   props: {
     jobs: {
@@ -38,11 +43,25 @@ export default defineComponent({
       default: JobSortOrder.Title,
     },
     allowReset: Boolean,
-    someNumber: [Number, String] as PropType<Number | String>
+    someNumber: [Number, String] as PropType<number | string>,
+    // Other property examples
+    buttonClass: {
+      type: [Array, Object, String] as PropType<string[] | object | string>,
+      default: '',
+    },
+    options: Object as PropType<JobListOptions>,
+    heading: String,
   },
 
   emits: ['resetOrder'],
-
+  // Also object syntax for emits with validation return true if valid, false if invalid
+  // emits: {
+  //   resetOrder() { return true},
+  //   doSomething(payload: string) {
+  //     // perform runtime validation
+  //     return payload.length > 0
+  //   }
+  // },
   setup(props, { emit, attrs, slots, expose }) {
     // equivalent to this.$emit, this.$attrs, this.$slots
 

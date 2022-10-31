@@ -5,11 +5,13 @@ import { useJobList } from '@/composables/useJobList';
 import { JobSortOrder } from '@/models/JobSortOrder';
 
 export default defineComponent({
-    name: 'CompositionView',
+    name: 'ComposableView',
     components: { JobListSetup },
 
     setup() {
-        const { jobs, jobSortOrder, onResetOrder } = useJobList(JobSortOrder.Location);
+        const { jobs, jobSortOrder, allowReset, onResetOrder } = useJobList({
+            initialOrder: JobSortOrder.Location,
+        });
 
         const onHandleSortClick = (sortOrder: string) => {
             jobSortOrder.value = sortOrder as JobSortOrder;
@@ -18,6 +20,7 @@ export default defineComponent({
         return {
             jobs,
             jobSortOrder,
+            allowReset,
             onHandleSortClick,
             onResetOrder,
         }
@@ -39,7 +42,7 @@ export default defineComponent({
         </header>
         <hr>
 
-        <JobListSetup :jobs="jobs" :jobSortOrder="jobSortOrder" :allowReset="true" someNumber="500" @resetOrder="onResetOrder" />
+        <JobListSetup :jobs="jobs" :jobSortOrder="jobSortOrder" :allowReset="allowReset" :someNumber="200" @resetOrder="onResetOrder" />
     </div>
 </template>
   
