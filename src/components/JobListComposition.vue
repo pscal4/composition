@@ -57,14 +57,9 @@ export default defineComponent({
   },
 
   emits: ['resetOrder'],
-  // Also object syntax for emits with validation return true if valid, false if invalid
-  // emits: {
-  //   resetOrder() { return true},
-  //   doSomething(payload: string) {
-  //     // perform runtime validation
-  //     return payload.length > 0
-  //   }
-  // },
+  // There is also object syntax for emits with validation return true if valid, false if invalid
+  // See https://vuejs.org/guide/typescript/options-api.html#typing-component-emits 
+
   setup(props, { emit, attrs, slots, expose }) {
     // equivalent to this.$emit, this.$attrs, this.$slots
 

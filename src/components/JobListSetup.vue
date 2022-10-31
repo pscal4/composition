@@ -23,10 +23,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['resetOrder'])
-// const emitsObjectSyntax = defineEmits<{
-//   (e: 'resetOrder'): void,
-//   (e: 'doSomething', payload: string) : void,
-//   }>();
+// There is also object syntax for defineEmits.  See https://vuejs.org/guide/typescript/options-api.html#typing-component-emits 
 
 const salarySelectedCount = ref(0);
 const orderChangedCount = ref(0);
