@@ -15,19 +15,6 @@ export default defineComponent({
         allowReset: Boolean,
         someNumber: [Number, String] as PropType<Number | String>
     },
-    // Notice type is a constructor so Boolean (with upper case) versus boolean
-    // Need PropType when property can be multiple types
-
-    // Class Decorator syntax for props
-    // @Prop({ required: true })
-    // private jobs: Job[];
-    // @Prop({ default: 'title' })
-    // private jobSortOrder: JobSortOrder;
-    // @Prop({ default: false })
-    // private allowReset: boolean;
-    // @Prop()
-    // private someNumber: number | string;
-
 
     data() {
         return {
@@ -35,10 +22,6 @@ export default defineComponent({
             orderChangedCount: 0,
         };
     },
-    // Class syntax
-    // private salarySelectedCount: number = 0;
-    // private orderChangedCount: number = 0;
-
 
     computed: {
         orderedJobs(): Job[] {
@@ -48,8 +31,6 @@ export default defineComponent({
 
         }
     },
-    // Class syntax
-    // private get orderedJobs(): Job[] { ... }
 
     watch: {
         jobSortOrder: {
