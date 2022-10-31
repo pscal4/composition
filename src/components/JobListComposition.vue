@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, type PropType, computed, ref, type Ref, watch, onMounted } from 'vue'
+import { defineComponent, type PropType, computed, ref, type Ref, watch } from 'vue'
 import { JobSortOrder } from '@/models/JobSortOrder';
 import type Job from '@/models/Job';
 import { Person } from '@/models/Person';
@@ -41,14 +41,14 @@ export default defineComponent({
     allowReset: Boolean,
     someNumber: [Number, String] as PropType<number | string>,
     // Other property examples
-    // buttonClass: {
-    //   type: [Array, Object, String] as PropType<string[] | object | string>,
-    //   default: '',
-    // },
     // heading: String,
     // count: Number,
     // singleJob: Object as PropType<Job>, // Because Job is an interface
     // updatePerson : Person, // Person is a class so it has a constructor    
+    // buttonClass: {
+    //   type: [Array, Object, String] as PropType<string[] | object | string>,
+    //   default: '',
+    // },
   },
 
   emits: ['resetOrder'],
@@ -71,7 +71,7 @@ export default defineComponent({
 
     watch(() => props.jobSortOrder,
       (newValue, oldValue) => {
-        if (newValue == 'salary') {
+        if (newValue == JobSortOrder.Salary) {
           salarySelectedCount.value++;
         }
         orderChangedCount.value++;

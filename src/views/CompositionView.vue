@@ -11,7 +11,7 @@
       </div>
     </header>
     <hr>
-    <job-list :jobs="jobs" :jobSortOrder="jobSortOrder" :allowReset="true" someNumber="200" @resetOrder="onResetOrder" />
+    <job-list :jobs="jobs" :jobSortOrder="jobSortOrder" :allowReset="allowReset" :someNumber="200" @resetOrder="onResetOrder" />
   </div>
 </template>
 
@@ -25,15 +25,20 @@ export default defineComponent({
   name: 'CompositionView',
   components: { JobList },
   setup() {
+    const allowReset = ref(true);
     const jobSortOrder = ref(JobSortOrder.Title);
     const jobs: Ref<Array<Job>> = ref([]);
     // Another way: const jobs2 = ref<Array<Job>>([]);
 
-    // There is not a created life cycle hook.  If we wanted to call getJobs in created, it would just
-    // be executed inside setup.
-    onMounted(() => {
+    // There is also reactive() method that can be used for objects but it has some limitations
+    // See https://vuejs.org/guide/essentials/reactivity-fundamentals.html 
+
+
+    onMounted(() => {  // Can be async
       getJobs();
     });
+    // There is not a created or beforeCreate life cycle hook.  If we wanted to call getJobs in created, it would just
+    // be executed inside setup.
 
     function getJobs(): void {
       jobs.value = [
@@ -46,22 +51,23 @@ export default defineComponent({
     }
 
     // Another syntax for functions
-
     const onHandleSortClick = (sortOrder: string) => {
       jobSortOrder.value = sortOrder as JobSortOrder;
     }
 
-    function onResetOrder() {
+    function onResetOrder() : void {
       jobSortOrder.value = JobSortOrder.Title;
     }
     
-    // Note:  "this" will have a value of undefined inside setup()
+    // Note:  setup() does not have access to the component instance 
+    //    "this" will have a value of undefined inside setup()
 
     // Must return anything referenced in the template
 
     return {
       jobs,
       jobSortOrder,
+      allowReset,
       onHandleSortClick,
       onResetOrder,
     }

@@ -14,12 +14,12 @@ export default defineComponent({
             initialOrder: JobSortOrder.Location,
         });
 
-        const router = useRouter();
-
         const onHandleSortClick = (sortOrder: string) => {
             jobSortOrder.value = sortOrder as JobSortOrder;
         }
 
+        // Packages for Vue 3 will have composables
+        const router = useRouter();
         function goHome() : void {
             router.push({ name : 'home'});
         }
