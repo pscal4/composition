@@ -36,7 +36,7 @@ export function useJobList(options : useJobListOptions = {}) {
 
     return {
       jobSortOrder,
-      allowReset : ref(allowReset),
+      allowReset : ref(allowReset),      
       jobs,
       onResetOrder,      
     }

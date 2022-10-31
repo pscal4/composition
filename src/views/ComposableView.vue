@@ -3,6 +3,7 @@ import { defineComponent } from 'vue';
 import JobListSetup from '@/components/JobListSetup.vue'
 import { useJobList } from '@/composables/useJobList';
 import { JobSortOrder } from '@/models/JobSortOrder';
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
     name: 'ComposableView',
@@ -13,8 +14,14 @@ export default defineComponent({
             initialOrder: JobSortOrder.Location,
         });
 
+        const router = useRouter();
+
         const onHandleSortClick = (sortOrder: string) => {
             jobSortOrder.value = sortOrder as JobSortOrder;
+        }
+
+        function goHome() : void {
+            router.push({ name : 'home'});
         }
 
         return {
@@ -23,6 +30,7 @@ export default defineComponent({
             allowReset,
             onHandleSortClick,
             onResetOrder,
+            goHome,
         }
     }
 });
@@ -34,6 +42,7 @@ export default defineComponent({
             <div class="title">
                 <h1>Composable</h1>
             </div>
+            <p style="cursor: pointer;" @click="goHome">Go Home</p>
             <div class="order">
                 <button @click="onHandleSortClick('title')">Order by title</button>
                 <button @click="onHandleSortClick('salary')">Order by salary</button>
