@@ -28,11 +28,6 @@ import { JobSortOrder } from '@/models/JobSortOrder';
 import type Job from '@/models/Job';
 import { Person } from '@/models/Person';
 
-export interface JobListOptions {
-  allowReset: boolean,
-  someNumber: number,
-}
-
 export default defineComponent({
   props: {
     jobs: {
@@ -72,7 +67,8 @@ export default defineComponent({
       })
     });
 
-    // Also can use watchEffect() which runs immediately and re-runs it whenever the dependencies are changed.
+    const noJobs = computed(() => props.jobs.length === 0);  // Single line computed
+
     watch(() => props.jobSortOrder,
       (newValue, oldValue) => {
         if (newValue == 'salary') {
@@ -81,6 +77,9 @@ export default defineComponent({
         orderChangedCount.value++;
       },
       { immediate: true });
+    // Also can use watchEffect() which runs immediately and re-runs whenever the dependencies are changed.
+    // See https://vuejs.org/api/reactivity-core.html#watcheffect 
+
 
     function onResetOrderClick(): void {
       emit(`resetOrder`);
@@ -88,6 +87,7 @@ export default defineComponent({
 
     // Note:  "this" will have a value of undefined inside setup()
 
+    // Must return anything referenced in the template
     return {
       salarySelectedCount,
       orderChangedCount,

@@ -34,7 +34,6 @@ const orderedJobs = computed(() => {
   })
 });
 
-// Also can use watchEffect() which runs immediately and re-runs it whenever the dependencies are changed.
 watch(() => props.jobSortOrder,
   (newValue, oldValue) => {
     if (newValue == 'salary') {
@@ -48,7 +47,7 @@ function onResetOrderClick(): void {
   emit(`resetOrder`);
 }
 
-    // Note:  "this" will have a value of undefined inside setup()
+// *** No return statement needed:  Every variable and method defined is automatically provided in the template
 
 </script>
 

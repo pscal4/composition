@@ -24,11 +24,10 @@ import { JobSortOrder } from '@/models/JobSortOrder';
 export default defineComponent({
   name: 'CompositionView',
   components: { JobList },
-
   setup() {
+    const jobSortOrder = ref(JobSortOrder.Title);
     const jobs: Ref<Array<Job>> = ref([]);
     // Another way: const jobs2 = ref<Array<Job>>([]);
-    const jobSortOrder = ref(JobSortOrder.Title);
 
     // There is not a created life cycle hook.  If we wanted to call getJobs in created, it would just
     // be executed inside setup.
@@ -46,6 +45,8 @@ export default defineComponent({
       ];
     }
 
+    // Another syntax for functions
+
     const onHandleSortClick = (sortOrder: string) => {
       jobSortOrder.value = sortOrder as JobSortOrder;
     }
@@ -53,6 +54,10 @@ export default defineComponent({
     function onResetOrder() {
       jobSortOrder.value = JobSortOrder.Title;
     }
+    
+    // Note:  "this" will have a value of undefined inside setup()
+
+    // Must return anything referenced in the template
 
     return {
       jobs,
