@@ -24,8 +24,9 @@
 
 <script lang="ts">
 import { defineComponent, type PropType, computed, ref, type Ref, watch, onMounted } from 'vue'
-import type Job from '@/models/Job'
 import { JobSortOrder } from '@/models/JobSortOrder';
+import type Job from '@/models/Job';
+import { Person } from '@/models/Person';
 
 export interface JobListOptions {
   allowReset: boolean,
@@ -45,12 +46,14 @@ export default defineComponent({
     allowReset: Boolean,
     someNumber: [Number, String] as PropType<number | string>,
     // Other property examples
-    buttonClass: {
-      type: [Array, Object, String] as PropType<string[] | object | string>,
-      default: '',
-    },
-    options: Object as PropType<JobListOptions>,
-    heading: String,
+    // buttonClass: {
+    //   type: [Array, Object, String] as PropType<string[] | object | string>,
+    //   default: '',
+    // },
+    // heading: String,
+    // count: Number,
+    // singleJob: Object as PropType<Job>, // Because Job is an interface
+    // updatePerson : Person, // Person is a class so it has a constructor    
   },
 
   emits: ['resetOrder'],
